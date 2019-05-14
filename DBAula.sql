@@ -1,0 +1,16 @@
+create database dbAula;
+use dbAula;
+create table tbAlunos(id int primary key auto_increment not null, nome varchar (255));
+create table tbDisciplinas(id int primary key auto_increment not null, disciplina varchar(255));
+alter table tbDisciplinas add column id_aluno int;
+alter table tbDisciplinas add constraint fkAlunos foreign key (id_aluno) references tbAlunos (id);
+insert into tbAlunos(nome) values("Matheus Rodrigues Duarte");
+insert into tbAlunos(nome) values("Fernando Henrique");
+insert into tbAlunos(nome) values("Grazyele Vendametro");
+select * from tbAlunos;
+insert into tbDisciplinas(disciplina, id_aluno) values("Matematica",1);
+insert into tbDisciplinas(disciplina, id_aluno) values("Portugues",2);
+insert into tbDisciplinas(disciplina, id_aluno) values("Biologia",3);
+select * from tbDisciplinas;
+select * from tbAlunos as a join tbdisciplinas as d on a.id = d.id_aluno;
+select a.nome, d.disciplina from tbAlunos as a join tbDisciplinas as d on a.id = d.id_aluno;
