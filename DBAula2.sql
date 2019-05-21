@@ -1,0 +1,11 @@
+create database DBEscola;
+use DBEscola;
+create table Instrutores(id int(11) not null primary key auto_increment, nome varchar (90), email varchar(50), valor_hora int(10), certificados varchar(255));
+create table Cursos(id int(10) not null primary key auto_increment, nome varchar (50), requisito varchar(255), carga_horaria smallint(10), preco Double);
+create table Alunos(id int(11) not null primary key auto_increment, cpf char (11), nome varchar(50), email varchar(50), fone char(14), data_nascimnto date);
+create table Matriculas(id int(10) not null primary key auto_increment, turmas_id int(10), alunos_id int(11), data_matricula date);
+create table Turmas(id int(10) not null primary key auto_increment, instrutores_id int(11), cursos_id int(10), data_inicio date, data_final date, carga_horaria smallint(5));
+alter table Matriculas add constraint matriculas_FKIndex1 foreign key (alunos_id) references Alunos(id);
+alter table Turmas add constraint turmas_FKIndex1 foreign key (cursos_id) references Cursos(id);
+alter table Turmas add constraint turmas_FKIndex2 foreign key (instrutores_id) references Instrutores(id);
+alter table Matriculas add constraint matriculas_FKIndex3 foreign key (turmas_id) references Turmas(id);
